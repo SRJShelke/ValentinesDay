@@ -1,0 +1,20 @@
+{
+    "team": [
+        {
+            "name": "Ovi ren",
+            "role": "Author",
+            "bio": "Main creator and developer of the button-will-react project.",
+            "avatar": "https://avatars.githubusercontent.com/u/137372623?v=4",
+            "url": "https://iamovi.github.io/",
+            "country": "Dhaka, Bangladesh"
+        },
+        {
+            "name": "Tahsin Zidane",
+            "role": "Contributor",
+            "bio": "Contributed to projects 05, 07, 11 and 12",
+            "avatar": "https://ik.imagekit.io/weqpr6tob/MY%20IMGS/me.logo.png",
+            "url": "https://tahsinzidane.github.io/",
+            "country": "Jessore, Bangladesh"
+        }
+    ]
+}

@@ -106,7 +106,8 @@ Live preview - [Hit here!](https://iamovi.github.io/button-will-react/11-SoulIns
 
 Check out main repo of SoulInsta - [Here](https://github.com/tahsinzidane/SoulInsta)
 
-***12. soulInsta V2 (Side project of main soulInsta)***
+**12. soulInsta V2 (Side project of main soulInsta)**
+
 <img src="./assets/banner/12-soulinstaV2.gif">
 
 Live preview - [Hit here!](https://iamovi.github.io/button-will-react/12-SoulInsta_V2)
@@ -120,6 +121,16 @@ Live preview - [Hit here!](https://iamovi.github.io/button-will-react/12-SoulIns
 **Feeling down? Click to get happiness but get rickrolled lol, (Send this to your homie).**
 
 Live preview - [Hit here!](https://iamovi.github.io/button-will-react/13-rickroll/)
+
+---
+
+**14. anxiety button**
+
+![Preview](./assets/banner/14-anxiety_button.gif)
+
+**anxiety button that turns into windows death screen.**
+
+Live preview - [Hit here!](https://iamovi.github.io/button-will-react/14-anxiety_button/)
 
 ---
 

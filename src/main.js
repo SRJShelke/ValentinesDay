@@ -84,6 +84,37 @@ function renderProjects(projects) {
   container.style.minHeight = 'auto';
 }
 
+function renderTeam(team) {
+  const container = document.querySelector('.team-section');
+  if (!container) return; // Guard clause if element not found
+
+  container.innerHTML = '';
+  const fragment = document.createDocumentFragment();
+
+  team.forEach(member => {
+    const card = document.createElement('div');
+    card.className = 'team-card';
+
+    // Default country for Ovi ren if not present, though now it is in JSON.
+    // The user requirement: "if its me ovi ren, it will selected to dhaka, bangladesh"
+    const country = member.country || (member.name === 'Ovi ren' ? 'Dhaka, Bangladesh' : '');
+
+    card.innerHTML = `
+      <div class="team-avatar">
+        <img src="${member.avatar}" alt="${member.name}">
+      </div>
+      <h5>${member.role}</h5>
+      <h4>${member.name}</h4>
+      ${country ? `<p style="font-size: 0.9rem; color: var(--secondary-text); margin-bottom: 0.5rem;"><i class="bi bi-geo-alt"></i> ${country}</p>` : ''}
+      <p>${member.bio}</p>
+      <a href="${member.url}" target="_blank">View Portfolio</a>
+    `;
+    fragment.appendChild(card);
+  });
+
+  container.appendChild(fragment);
+}
+
 fetch('./src/projects-data.json')
   .then(res => res.json())
   .then(data => {
@@ -95,6 +126,15 @@ fetch('./src/projects-data.json')
     if (savedScrollPos) {
       window.scrollTo(0, parseInt(savedScrollPos));
       sessionStorage.removeItem('scrollPos');
+    }
+  })
+  .catch(err => console.error(err))
+
+fetch('./src/team-data.json')
+  .then(res => res.json())
+  .then(data => {
+    if (data.team) {
+      renderTeam(data.team);
     }
   })
   .catch(err => console.error(err))
