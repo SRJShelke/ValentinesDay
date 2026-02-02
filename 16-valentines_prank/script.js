@@ -4,6 +4,15 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const question = document.getElementById("question");
 
+/* 💘 Get Valentine name from URL */
+const params = new URLSearchParams(window.location.search);
+const valentineName = params.get("name");
+
+if (valentineName) {
+  question.textContent = `Will you be my Valentine, ${valentineName}? 💘`;
+}
+
+/* Text reactions */
 const texts = [
   "Why are you like this? 😭",
   "Stop playing 💔",
@@ -16,33 +25,43 @@ const texts = [
   "NO is not an option anymore 😌",
 ];
 
-noBtn.addEventListener("mouseover", () => {
+/* Function to move NO button */
+function moveNoButton() {
   attempts++;
 
-  // Update text
-  question.textContent = texts[Math.min(attempts - 1, texts.length - 1)];
+  question.textContent =
+    texts[Math.min(attempts - 1, texts.length - 1)];
 
-  // Move button randomly and scale it (avoid overlapping YES button, constrained for mobile)
   const x =
-    Math.random() > 0.5 ? Math.random() * 80 + 50 : -(Math.random() * 80 + 50);
+    Math.random() > 0.5
+      ? Math.random() * 80 + 50
+      : -(Math.random() * 80 + 50);
   const y =
-    Math.random() > 0.5 ? Math.random() * 80 + 50 : -(Math.random() * 80 + 50);
+    Math.random() > 0.5
+      ? Math.random() * 80 + 50
+      : -(Math.random() * 80 + 50);
+
   const noScale = Math.max(0.3, 1 - attempts * 0.15);
   noBtn.style.transform = `translate(${x}px, ${y}px) scale(${noScale})`;
 
-  // Grow YES and ensure it stays on top
-  const yesScale = 1 + attempts * 0.15;
+  const yesScale = Math.min(2.5, 1 + attempts * 0.15);
   yesBtn.style.transform = `scale(${yesScale})`;
   yesBtn.style.zIndex = "10";
 
-  // make NO disappear
   if (attempts >= texts.length) {
     noBtn.style.display = "none";
     noBtn.style.pointerEvents = "none";
     question.textContent = "Okay okay 😌 Just press YES ❤️";
   }
-});
+}
 
+/* Desktop */
+noBtn.addEventListener("mouseover", moveNoButton);
+
+/* Mobile */
+noBtn.addEventListener("touchstart", moveNoButton);
+
+/* YES click */
 yesBtn.addEventListener("click", () => {
   document.body.innerHTML = `
     <h1>Yayyyy 🥰💖</h1>
@@ -50,44 +69,23 @@ yesBtn.addEventListener("click", () => {
   `;
 });
 
-console.log(texts.length);
+/* ❤️ Heart Particles */
+const heartsContainer = document.querySelector(".hearts");
 
-// for mobile devices where hover is not possible
-noBtn.addEventListener("touchstart", () => {
-  attempts++;
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💖";
 
-  // Update text
-  question.textContent = texts[Math.min(attempts - 1, texts.length - 1)];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 10 + 16 + "px";
+  heart.style.animationDuration = Math.random() * 2 + 4 + "s";
 
-  // Move button randomly and scale it (avoid overlapping YES button, constrained for mobile)
-  const x =
-    Math.random() > 0.5 ? Math.random() * 80 + 50 : -(Math.random() * 80 + 50);
-  const y =
-    Math.random() > 0.5 ? Math.random() * 80 + 50 : -(Math.random() * 80 + 50);
-  const noScale = Math.max(0.3, 1 - attempts * 0.15);
-  noBtn.style.transform = `translate(${x}px, ${y}px) scale(${noScale})`;
+  heartsContainer.appendChild(heart);
 
-  // Grow YES and ensure it stays on top
-  const yesScale = 1 + attempts * 0.15;
-  yesBtn.style.transform = `scale(${yesScale})`;
-  yesBtn.style.zIndex = "10";
-
-  // Optional: make NO disappear
-  if (attempts >= texts.length) {
-    noBtn.style.display = "none";
-    noBtn.style.pointerEvents = "none";
-    question.textContent = "Okay okay 😌 Just press YES ❤️";
-  }
-});
-
-// Get name from URL
-const params = new URLSearchParams(window.location.search);
-const valentineName = params.get("name");
-
-// Update question text dynamically
-const question = document.getElementById("question");
-
-if (valentineName) {
-  question.textContent = `Will you be my Valentine, ${valentineName}? 💘`;
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
 }
 
+setInterval(createHeart, 400);
