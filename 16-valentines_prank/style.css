@@ -13,56 +13,23 @@ body {
   background: white;
   margin: 0;
   padding: 40px;
+  overflow: hidden;
 }
 
+/* Main content */
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 #question {
   padding: 20px;
 }
-
-.hearts {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.heart {
-  position: absolute;
-  bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 6s linear infinite;
-  opacity: 0.8;
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0.9;
-  }
-  100% {
-    transform: translateY(-100vh) scale(1.5);
-    opacity: 0;
-  }
-}
-
-/* Keep content above hearts */
-.main {
-  position: relative;
-  z-index: 2;
-}
-
 
 .container {
   position: relative;
@@ -70,6 +37,7 @@ body {
   gap: 20px;
 }
 
+/* Buttons */
 button {
   padding: 14px 26px;
   font-size: 18px;
@@ -87,4 +55,35 @@ button {
 #noBtn {
   background: #e0e0e0;
   position: relative;
+}
+
+/* ❤️ Floating Hearts */
+.hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  opacity: 0.8;
+  animation: floatUp 6s linear forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
 }
