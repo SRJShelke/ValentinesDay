@@ -75,6 +75,18 @@ noBtn.addEventListener("touchstart", () => {
   // Optional: make NO disappear
   if (attempts >= texts.length) {
     noBtn.style.display = "none";
+
+  // Get name from URL
+const params = new URLSearchParams(window.location.search);
+const valentineName = params.get("name");
+
+// Update question text dynamically
+const question = document.getElementById("question");
+
+if (valentineName) {
+  question.textContent = `Will you be my Valentine, ${valentineName}? 💘`;
+}
+
     noBtn.style.pointerEvents = "none";
     question.textContent = "Okay okay 😌 Just press YES ❤️";
   }
