@@ -79,3 +79,15 @@ noBtn.addEventListener("touchstart", () => {
     question.textContent = "Okay okay 😌 Just press YES ❤️";
   }
 });
+
+// Get name from URL
+const params = new URLSearchParams(window.location.search);
+const valentineName = params.get("name");
+
+// Update question text dynamically
+const question = document.getElementById("question");
+
+if (valentineName) {
+  question.textContent = `Will you be my Valentine, ${valentineName}? 💘`;
+}
+
